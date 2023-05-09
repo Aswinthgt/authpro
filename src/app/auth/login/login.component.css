@@ -1,0 +1,9 @@
+:host{
+    display: flex;
+    align-items: center;
+    height: 50vh;
+}
+
+.width100{
+ width: 100%;
+}

@@ -1,0 +1,13 @@
+<div class="card" style="width: 25rem;">
+    <div class="card-body">
+        <div class="fs-3">{{data[0].userName}}  Details</div>
+        <mat-list>
+            <ng-container *ngFor="let d of data">
+                <mat-list-item>
+                    <span matListItemTitle>Name: {{d?.userName}}</span>
+                    <span>Role: {{d?.role}}</span>
+                </mat-list-item>
+            </ng-container>
+        </mat-list>
+    </div>
+</div>

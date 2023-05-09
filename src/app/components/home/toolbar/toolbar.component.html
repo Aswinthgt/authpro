@@ -1,0 +1,24 @@
+<p>
+  <mat-toolbar color="primary">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>AuthPro</span>
+    <span class="example-spacer"></span>
+    <ng-container *ngIf="menuEnable; else templateLogout">
+      <button mat-button aria-label="Example icon-button with heart icon" (click)="login()"> Log In
+
+      </button>
+      <button mat-button aria-label="Example icon-button with share icon" (click)="signUp()">
+        Sign Up
+      </button>
+    </ng-container>
+    <ng-template #templateLogout>
+      <button mat-button aria-label="Example icon-button with share icon" (click)="logout()">
+        Log Out
+      </button>
+
+    </ng-template>
+
+  </mat-toolbar>
+</p>

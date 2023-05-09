@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <img class="rounded-circle" [src]="imageUrl ? imageUrl : '../../../assets/Blank-profile-image.jpg'" alt=""
+        width="250" height="250" priority />
+      <div class="d-flex pt-3">
+        <div class="border border-5 p-2 ms-5 rounded">
+          <button mat-icon-button (click)="fileinput.click()">
+            <mat-icon>upload</mat-icon>
+          </button>
+          <input hidden #fileinput type="file" (change)="imageUpload($event)" />
+          <button mat-icon-button (click)="deleteImage()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <ng-template appAddHost></ng-template>
+    </div>
+  </div>
+</div>

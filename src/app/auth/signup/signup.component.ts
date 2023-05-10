@@ -11,6 +11,7 @@ export class SignupComponent implements OnInit{
 
 firstsignUp: FormGroup;
 secondsignUp: FormGroup;
+mobile:string | number;
   constructor(fb: FormBuilder,private authService: AuthService) {
 
     this.firstsignUp = fb.group({
@@ -35,7 +36,7 @@ register(){
 
   this.authService.register(this.firstsignUp.value).subscribe({
     next: (data)=>{
-      console.log(data);
+      this.mobile = data.phoneNumber;
     },
     error: (error)=>{
       console.log(error);

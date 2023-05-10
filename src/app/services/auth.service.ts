@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ILogin, ILoginResponse, IRegister } from '../interface/auth';
+import { ILogin, ILoginResponse, IRegister, IregisterResponse } from '../interface/auth';
 import { environment } from '../../environments/environment.development';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   register(data:IRegister) {
-    return this.http.post(`${environment.auth}/register`,data)
+    return this.http.post<IregisterResponse>(`${environment.auth}/register`,data)
   }
 
   isLoggedIn(){

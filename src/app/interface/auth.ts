@@ -15,3 +15,8 @@ export interface ILogin{
 export interface ILoginResponse {
     token:string
 }
+
+export interface IregisterResponse{
+    message:string,
+    phoneNumber:string | number
+}

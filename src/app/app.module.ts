@@ -17,6 +17,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 import { NgOptimizedImage } from '@angular/common';
 import { AdminComponent } from './components/admin/admin.component';
 import { AddHostDirective } from './directive/add-host.directive';
+import { EmailValidationComponent } from './auth/signup/email-validation/email-validation.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddHostDirective } from './directive/add-host.directive';
     UserComponent,
     ToolbarComponent,
     AdminComponent,
-    AddHostDirective
+    AddHostDirective,
+    EmailValidationComponent
   ],
   imports: [
     BrowserModule,

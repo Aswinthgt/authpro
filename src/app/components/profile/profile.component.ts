@@ -16,12 +16,10 @@ export class ProfileComponent {
   @ViewChild(AddHostDirective, { static: true }) addHost: AddHostDirective;
 
   component = [
-    {
-      name: "admin",
-      component: AdminComponent
+    {name: "admin",
+    component: AdminComponent
     },
-    {
-      name: "user",
+    {name: "user",
       component: UserComponent
     }]
 

@@ -15,7 +15,7 @@ export class ToolbarComponent implements OnInit {
       next: (event) => {
         if (event instanceof NavigationEnd) {
           console.log(event.url)
-          if (event.url == '/login' || event.url == "/register" || event.url == '/') {
+          if (event.url == '/login' || event.url == "/signup" || event.url == '/') {
             this.menuEnable = true;
           } else {
             this.menuEnable = false;

@@ -1,0 +1,9 @@
+<div>OTP sent to Your Mobile {{email}}</div>
+<div>
+    <mat-form-field appearance="outline" class="p-1">
+        <mat-label>Enter OTP</mat-label>
+        <input matInput type="text" formControlName="otp">
+    </mat-form-field>
+</div>
+<button mat-button matStepperPrevious>Back</button>
+<button mat-button matStepperNext (click)="verification()">Next</button>

@@ -27,6 +27,10 @@ export class AuthService {
     return this.http.post<ILoginResponse>(`${environment.auth}/verification`,data)
   }
 
+  emailgenerate(data:any){
+    return this.http.post(`${environment.auth}/email-token-generate`,data)
+  }
+
   isLoggedIn(){
     const token = localStorage.getItem("token");
     if(!token){

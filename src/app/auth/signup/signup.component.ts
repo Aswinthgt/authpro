@@ -9,39 +9,39 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-
   firstsignUp: FormGroup;
   secondsignUp: FormGroup;
   mobile: string | number;
   enable = false;
   time: string | number;
   resendEnable = false;
+  emailDisable = true;
+  emailmessage: string;
 
   constructor(
     fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private snackBar: MatSnackBar) {
-
+    private snackBar: MatSnackBar
+  ) {
     this.firstsignUp = fb.group({
-      firstname: ["", Validators.required],
-      lastname: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
-      phone: ["", Validators.required],
-      password: ["", Validators.required],
-      cpassword: ["", Validators.required],
-    })
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      password: ['', Validators.required],
+      cpassword: ['', Validators.required],
+    });
 
     this.secondsignUp = fb.group({
-      otp: ["", Validators.required],
-    })
+      otp: ['', Validators.required],
+    });
   }
 
-  ngOnInit() { }
-
+  ngOnInit() {}
 
   register() {
     this.enable = true;
@@ -52,22 +52,19 @@ export class SignupComponent implements OnInit {
         this.timer();
       },
       error: (error) => {
-        this.router.navigate(["/login"]);
+        this.router.navigate(['/login']);
         this.snackBar.open(error.message, 'Close', { duration: 3000 });
-      }
-    })
+      },
+    });
   }
 
-
   resendOtp() {
-
     this.authService.otpRegenerate(this.mobile).subscribe({
       next: (data) => {
         this.mobile = data.phoneNumber;
         this.timer();
-      }
-    })
-
+      },
+    });
   }
 
   timer() {
@@ -86,23 +83,35 @@ export class SignupComponent implements OnInit {
     }, 1000);
   }
 
-
   verification() {
     const data = {
       phoneNumber: this.mobile,
       otp: this.secondsignUp.value.otp,
-    }
-
+    };
     this.authService.otpVerification<ILoginResponse>(data).subscribe({
       next: (res) => {
         if (res.token) {
-          localStorage.setItem("token", JSON.stringify(res.token));
+          localStorage.setItem('token', JSON.stringify(res.token));
           this.router.navigate(['/profile']);
         }
-      }
-    })
+      },
+    });
   }
 
-
-
+  emailGenerate() {
+    const data = {
+      phone: this.mobile,
+    };
+    this.enable = true;
+    this.authService.emailgenerate(data).subscribe({
+      next: (res: any) => {
+        this.emailmessage = res.message;
+        this.emailDisable = false;
+        this.enable = false;
+      },
+      error: () => {
+        this.router.navigate(['login']);
+      },
+    });
+  }
 }

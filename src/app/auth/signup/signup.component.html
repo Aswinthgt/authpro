@@ -84,28 +84,41 @@
               <ng-container *ngIf="!enable">
                 <div class="row justify-content-center">
                   <div class="col-md-6">
-                    <div>OTP sent to Your Mobile {{ mobile }}</div>
-                    <div>
-                      <mat-form-field appearance="outline" class="p-1">
-                        <mat-label>Enter OTP</mat-label>
-                        <input matInput type="text" formControlName="otp" />
-                      </mat-form-field>
-                    </div>
-                    <div>
-                      <button mat-button color="primary"  [disabled]="resendEnable" (click)="resendOtp()">
-                        Resend OTP
-                      </button>
+                    <ng-container *ngIf="emailDisable">
+                      <div>OTP sent to Your Mobile {{ mobile }}</div>
+                      <div>
+                        <mat-form-field appearance="outline" class="p-1">
+                          <mat-label>Enter OTP</mat-label>
+                          <input matInput type="text" formControlName="otp" />
+                        </mat-form-field>
+                      </div>
+                      <div>
+                        <button
+                          mat-button
+                          color="primary"
+                          [disabled]="resendEnable"
+                          (click)="resendOtp()"
+                        >
+                          Resend OTP
+                        </button>
+                        <button *ngIf="resendEnable" mat-button color="primary">
+                          {{ time }}
+                        </button>
+                      </div>
                       <button
-                      *ngIf="resendEnable" 
                         mat-button
-                        color="primary"
+                        matStepperNext
+                        (click)="verification()"
                       >
-                        {{ time }}
+                        Verify
                       </button>
-                    </div>
-                    <button mat-button matStepperNext (click)="verification()">
-                   Verify
-                    </button>
+                      <button mat-button (click)="emailGenerate()">
+                        Verify Using Email
+                      </button>
+                    </ng-container>
+                    <ng-container *ngIf="!emailDisable">
+                      <h1>{{ emailmessage }}</h1>
+                    </ng-container>
                   </div>
                 </div>
               </ng-container>

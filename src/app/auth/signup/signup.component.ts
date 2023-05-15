@@ -41,9 +41,10 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   register() {
+    if (this.firstsignUp.invalid) { return; }
     this.enable = true;
     this.authService.register(this.firstsignUp.value).subscribe({
       next: (data) => {
@@ -69,7 +70,7 @@ export class SignupComponent implements OnInit {
 
   timer() {
     this.resendEnable = true;
-    let remainingTime = 3 * 60; // in seconds
+    let remainingTime = 3 * 60; 
     const interval = setInterval(() => {
       remainingTime--;
       const minutes = Math.floor(remainingTime / 60);
